@@ -1,0 +1,45 @@
+\usetheme[progressbar=frametitle,subsectionpage=progressbar]{metropolis}
+% custom colors
+\definecolor{unipdred}{RGB}{155, 0, 20}
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{darkgray}{gray}{0.8}
+\definecolor{examplecolor}{RGB}{13, 71, 161}
+
+%define template colors
+\setbeamercolor{frametitle}{bg=unipdred}
+\setbeamercolor{progress bar}{fg = unipdred}
+\setbeamercolor{alerted text}{fg = unipdred}
+\setbeamercolor{example text}{fg = examplecolor}
+
+%set links color
+\hypersetup{
+	citecolor={blue}
+}
+%bibliography style
+%\bibliographystyle{apalike}
+
+%custom version of page counter from presento theme
+\newcounter{totalfr}
+\setbeamertemplate{footline}{
+  \ifnum\inserttotalframenumber=1
+    \setcounter{totalfr}{2}
+  \else
+     \setcounter{totalfr}{\inserttotalframenumber}
+  \fi
+  \hfill{
+    \tikz{
+      \filldraw[fill=darkgray!40, draw=darkgray!50]  (0,0) -- (0.2,0) arc (0:{\value{framenumber}*(-360/(\value{totalfr}-1))}:0.2) -- (0,0);
+      \node at (0,0) {\normalsize \color{unipdred}\footnotesize{\insertframenumber}};
+    }
+  }
+  \hspace{2em}
+  \vspace*{1em}
+}
+
+
+
+\addtobeamertemplate{block alerted begin}{%
+  \setlength{\textwidth}{1\textwidth}%
+}{}
+\definecolor{codegray}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{codegray}{\text{#1}}}
